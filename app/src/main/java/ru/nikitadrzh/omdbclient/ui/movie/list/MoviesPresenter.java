@@ -1,6 +1,8 @@
 package ru.nikitadrzh.omdbclient.ui.movie.list;
 
 
+import android.util.Log;
+
 import java.util.List;
 
 import io.reactivex.disposables.Disposable;
@@ -14,6 +16,7 @@ import ru.nikitadrzh.omdbclient.ui.model.MovieViewModel;
 реализовывает контракт, в котором прописаны функции объекта
  */
 public class MoviesPresenter implements MoviesContract.Presenter {
+    //todo после создания с master соединить
 
     //в RxJava2 вместо subscription - disposable
     private Disposable disposable;
@@ -28,11 +31,15 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     todo по-сути в конструктор презентера передается класс, который cast к View, то есть в него
     todo вроде как не приходит ссылка типа, который реализует View, тогда все нормально, но надо
     todo это протестировать, чтобы убедиться, что точно MoviesContract.View приходит в коснтруктор
+    По-сути сюда именно MainActivity приходит, но cast под MoviesContract.View, так что впринципе
+    это нормально, к примеру, мы можем легко заменить MainActivity на фрагмент, реализующий .View,
+    при этом код презентера вообще не поменяется никак! Так как этого и добиваемся, то тест пройдет
     */
     private MoviesContract.View view;
 
     public MoviesPresenter(MoviesContract.View view) {
         this.view = view;
+        Log.i("TEST!", "MoviesContract.View has name: " + view.getClass().getName());
     }
 
     @Override
@@ -43,11 +50,11 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     }
 
     private void showFoundMovies(List<MovieViewModel> foundMovies) {
-/*
+    /*
     todo если тест удачен, то тут просто для всех кто реализует View вызывается метод, то есть
     todo логика отображения именно из презентера осуществляется, а не из фрагмента!!!
     По-сути в этом и есть предназначение этого класса
- */
+    */
         view.showMovies(foundMovies);
     }
 }
