@@ -25,10 +25,13 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     private MovieViewModelMapper movieViewModelMapper;
 
     /*
-    todo по-сути в конструктор презентера передается класс, который cast к View, то есть в него
-    todo вроде как не приходит ссылка типа, который реализует View, тогда все нормально, но надо
-    todo это протестировать, чтобы убедиться, что точно MoviesContract.View приходит в коснтруктор
-    */
+    методы по этой ссылки вызваются через класс, который реализует .View (Это не нарушает того
+    принципа, что внутренний слой ничего не должен знать о внешнем, так как реализовать этот
+    интерфейс может кто угодно, todo поэтому и используется BasePresenter, так как такие поля и
+    todo логика будут у всех презентеров)
+    Тут по сути, если .View станет реализовывать кто-то другой, то презентер от этого никак не
+    поменяется
+     */
     private MoviesContract.View view;
 
     public MoviesPresenter(MoviesContract.View view) {
@@ -43,11 +46,8 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     }
 
     private void showFoundMovies(List<MovieViewModel> foundMovies) {
-/*
-    todo если тест удачен, то тут просто для всех кто реализует View вызывается метод, то есть
-    todo логика отображения именно из презентера осуществляется, а не из фрагмента!!!
-    По-сути в этом и есть предназначение этого класса
- */
+
+        //логика отображения именно из презентера осуществляется, а не из фрагмента
         view.showMovies(foundMovies);
     }
 }
