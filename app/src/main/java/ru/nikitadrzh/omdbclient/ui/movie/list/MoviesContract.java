@@ -1,5 +1,9 @@
 package ru.nikitadrzh.omdbclient.ui.movie.list;
 
+import java.util.List;
+
+import ru.nikitadrzh.omdbclient.ui.model.MovieViewModel;
+
 /*
 В этом интерфейсе описывается, что должна делать View (которая отвечает за список фильмов) и что
 должен делать Presenter
@@ -14,7 +18,7 @@ public interface MoviesContract {
     interface View {
 
         //todo методу нужен аргуемент, но пока типа нет такого
-        void showMovies();
+        void showMovies(List<MovieViewModel> moviesToShow);
     }
 
     //todo тут опущено наследование от ScopedPresenter (пока)
