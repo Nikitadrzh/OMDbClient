@@ -7,7 +7,10 @@ package ru.nikitadrzh.omdbclient.ui.movie.list;
 public interface MoviesContract {
 
     //todo тут опущено наследование от BaseView (пока)
-    //описание функций View
+    /*
+    Данный интерфейс View реализуется непосредственно уже в активити/фрагменте, очень удобно, можно
+     описывать логику вызовов этих методов View из презентера, не имея еще даже самих представлений
+     */
     interface View {
 
         //todo методу нужен аргуемент, но пока типа нет такого
@@ -17,6 +20,8 @@ public interface MoviesContract {
     //todo тут опущено наследование от ScopedPresenter (пока)
     //описание функций презентера
     interface Presenter {
+
+        //метод поиска фильмов по названию
         void findMovies(String movieTitle);
     }
 }
