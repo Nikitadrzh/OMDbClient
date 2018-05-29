@@ -21,7 +21,8 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     //в RxJava2 вместо subscription - disposable
     private Disposable disposable;
 
-    //todo заинджектить
+    //todo заинджектить, но пока что просто создать, и передать в него заглушку - репозиторий,
+    //todo который реализовавается в data(или временно в app)
     private FindMoviesUseCase findMoviesUseCase;
 
     //todo заинджектить

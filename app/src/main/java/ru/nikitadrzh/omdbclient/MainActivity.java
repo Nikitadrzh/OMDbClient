@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
         super.onCreate(savedInstanceState);
 
         presenter = new MoviesPresenter(this);
+        //todo тут надо сделать поле ввода и кнопку
         callPresenter();
     }
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
 
     @Override
     public void showMovies(List<MovieViewModel> moviesToShow) {
-
+        //todo в этом методе надо отобразить, например просто в текст вью, список фильмов, те. надо
+        //todo тект вью создать
     }
 }
