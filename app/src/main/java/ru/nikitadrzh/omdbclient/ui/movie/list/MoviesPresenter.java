@@ -36,6 +36,7 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     при этом код презентера вообще не поменяется никак! Так как этого и добиваемся, то тест пройдет
     */
     private MoviesContract.View view;
+    //todo убрать этот комментарий
 
     public MoviesPresenter(MoviesContract.View view) {
         this.view = view;
