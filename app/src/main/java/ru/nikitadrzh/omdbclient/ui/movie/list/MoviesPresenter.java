@@ -8,6 +8,7 @@ import java.util.List;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import ru.nikitadrzh.domain.interactor.movie.FindMoviesUseCase;
+import ru.nikitadrzh.domain.repository.MovieRepository;
 import ru.nikitadrzh.omdbclient.ui.mapper.MovieViewModelMapper;
 import ru.nikitadrzh.omdbclient.ui.model.MovieViewModel;
 
@@ -28,18 +29,22 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     //todo заинджектить
     private MovieViewModelMapper movieViewModelMapper;
 
+    //todo заинжектить
+    private MovieRepository repository;
+
     /*
-    todo по-сути в конструктор презентера передается класс, который cast к View, то есть в него
-    todo вроде как не приходит ссылка типа, который реализует View, тогда все нормально, но надо
-    todo это протестировать, чтобы убедиться, что точно MoviesContract.View приходит в коснтруктор
     По-сути сюда именно MainActivity приходит, но cast под MoviesContract.View, так что впринципе
     это нормально, к примеру, мы можем легко заменить MainActivity на фрагмент, реализующий .View,
-    при этом код презентера вообще не поменяется никак! Так как этого и добиваемся, то тест пройдет
+    при этом код презентера вообще не поменяется никак! Так как этого и добиваемся, то тест пройден
     */
     private MoviesContract.View view;
 
-    public MoviesPresenter(MoviesContract.View view) {
+    public MoviesPresenter(MoviesContract.View view, MovieRepository repository,
+                           MovieViewModelMapper mapper) {//todo repo и mapper тут, потмоу что пока без DI
         this.view = view;
+        this.repository = repository;
+        this.movieViewModelMapper = mapper;
+        findMoviesUseCase = new FindMoviesUseCase(repository);//todo зачем тут репо?
         Log.i("TEST!", "MoviesContract.View has name: " + view.getClass().getName());
     }
 
@@ -51,11 +56,9 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     }
 
     private void showFoundMovies(List<MovieViewModel> foundMovies) {
-    /*
-    todo если тест удачен, то тут просто для всех кто реализует View вызывается метод, то есть
-    todo логика отображения именно из презентера осуществляется, а не из фрагмента!!!
-    По-сути в этом и есть предназначение этого класса
-    */
+        //todo хотя бы до сюда должно все проходить после создания маппера, если не проходит, значит
+        //todo все таки надо repoImpl передавать а не repo, а также при создании mappera тоже надо
+        //todo передавать конкретный экземпляр, а мы какбы передаем интерфейс
         view.showMovies(foundMovies);
     }
 }

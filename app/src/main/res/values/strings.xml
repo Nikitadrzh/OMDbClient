@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">OMDbClient</string>
+
+    <string name="request">request</string>
+    <string name="found_button">Found It!</string>
+    <string name="response">response</string>
 </resources>
