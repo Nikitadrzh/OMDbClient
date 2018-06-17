@@ -1,28 +1,15 @@
 package ru.nikitadrzh.omdbclient;
 
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import java.util.List;
 
 
-import ru.nikitadrzh.omdbclient.ui.MovieRepositoryImpl;
-import ru.nikitadrzh.omdbclient.ui.mapper.MovieViewModelMapperImpl;
-import ru.nikitadrzh.omdbclient.ui.model.MovieViewModel;
 import ru.nikitadrzh.omdbclient.ui.movie.content.MovieFragment;
-import ru.nikitadrzh.omdbclient.ui.movie.list.MoviesContract;
 import ru.nikitadrzh.omdbclient.ui.movie.list.MoviesFragment;
-import ru.nikitadrzh.omdbclient.ui.movie.list.MoviesPresenter;
 
 
 //для теста сделаем активити без DI и проч.

@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import ru.nikitadrzh.data.movie.MovieRepositoryImpl;
 import ru.nikitadrzh.omdbclient.R;
-import ru.nikitadrzh.omdbclient.ui.MovieRepositoryImpl;
 import ru.nikitadrzh.omdbclient.ui.mapper.MovieViewModelMapperImpl;
 import ru.nikitadrzh.omdbclient.ui.model.MovieViewModel;
 
@@ -24,7 +24,6 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     private MoviesPresenter presenter;
 
     private TextInputEditText inputEditText;
-
     private Button foundButton;
 
     @Override
@@ -38,7 +37,8 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         //todo както через binder сделать?
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         inputEditText = view.findViewById(R.id.input_edit_text);
@@ -50,7 +50,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     @Override
     public void showMovies(List<MovieViewModel> moviesToShow) {
         //todo и здесь уже идет отображение в recyclerView
-        Toast.makeText(getActivity(), "checked", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), moviesToShow.get(0).toString(), Toast.LENGTH_LONG).show();
     }
 
     //это внутренний  метод, вызываемый из самого фрагмента

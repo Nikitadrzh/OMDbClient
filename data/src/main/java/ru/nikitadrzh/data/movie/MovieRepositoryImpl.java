@@ -1,4 +1,4 @@
-package ru.nikitadrzh.omdbclient.ui;
+package ru.nikitadrzh.data.movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,6 @@ import io.reactivex.Single;
 import ru.nikitadrzh.domain.model.Movie;
 import ru.nikitadrzh.domain.repository.MovieRepository;
 
-//todo этот класс в модуле data будет, пока просто для теста тут
 public class MovieRepositoryImpl implements MovieRepository {
     @Override
     public Single<List<Movie>> findMovies(String movieTitle) {

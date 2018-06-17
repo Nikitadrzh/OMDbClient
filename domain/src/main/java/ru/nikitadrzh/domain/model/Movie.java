@@ -26,4 +26,8 @@ public final class Movie {
                 ", isFavourite" + isFavourite +
                 "}";
     }
+
+    public String getTitle() {
+        return title;
+    }
 }

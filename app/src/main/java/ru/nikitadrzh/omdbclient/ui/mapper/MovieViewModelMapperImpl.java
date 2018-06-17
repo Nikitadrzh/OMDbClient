@@ -12,7 +12,7 @@ public class MovieViewModelMapperImpl implements MovieViewModelMapper {
         //todo пока ваще нече не меняем
         List<MovieViewModel> movieViewModels = new ArrayList<>();
         for (Movie movie : moviesToMap) {
-            movieViewModels.add(new MovieViewModel("ыы", null, null, null,
+            movieViewModels.add(new MovieViewModel(movie.getTitle(), null, null, null,
                     false));
         }
         return movieViewModels;

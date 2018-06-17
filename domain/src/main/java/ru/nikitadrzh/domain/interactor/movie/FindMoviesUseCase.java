@@ -2,10 +2,8 @@ package ru.nikitadrzh.domain.interactor.movie;
 
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import ru.nikitadrzh.domain.interactor.type.SingleUseCaseWithParameter;
-import ru.nikitadrzh.domain.interactor.type.UseCaseWithParameters;
 import ru.nikitadrzh.domain.model.Movie;
 import ru.nikitadrzh.domain.repository.MovieRepository;
 
