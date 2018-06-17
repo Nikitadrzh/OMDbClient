@@ -26,10 +26,7 @@ import ru.nikitadrzh.omdbclient.ui.movie.list.MoviesPresenter;
 
 
 //для теста сделаем активити без DI и проч.
-public class MainActivity extends AppCompatActivity implements MoviesContract.View {
-
-    //todo надо инжектить
-    private MoviesPresenter presenter;
+public class MainActivity extends AppCompatActivity {
 
     //todo надо инжектить
     private FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
@@ -73,17 +70,5 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
         ViewPager pager = findViewById(R.id.view_pager);
 
         pager.setAdapter(adapter);
-
-        //todo в конструкторе презентера столько всего просто, потому что пока без DI
-        presenter = new MoviesPresenter(this, new MovieRepositoryImpl(),
-                new MovieViewModelMapperImpl());
-    }
-
-    private void showFoundMovies(String request) {
-        presenter.findMovies(request);
-    }
-
-    @Override
-    public void showMovies(List<MovieViewModel> moviesToShow) {
     }
 }
