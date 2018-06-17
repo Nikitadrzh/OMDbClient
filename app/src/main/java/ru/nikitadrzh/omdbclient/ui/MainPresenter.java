@@ -2,6 +2,7 @@ package ru.nikitadrzh.omdbclient.ui;
 
 import ru.nikitadrzh.omdbclient.MainActivity;
 
+//todo не использую, мб убрать потом
 public final class MainPresenter {
 
     //todo зачем этот конструктор, кто его вызывает?
