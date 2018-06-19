@@ -23,6 +23,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     //todo надо инжектить
     private MoviesPresenter presenter;
 
+    //todo все что связано с findView, как с ним быть с точки зрения DI???
     private TextInputEditText inputEditText;
     private Button foundButton;
 
@@ -31,8 +32,8 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         super.onCreate(savedInstanceState);
 
         //todo в конструкторе презентера столько всего просто, потому что пока без DI
-        presenter = new MoviesPresenter(this, new MovieRepositoryImpl(),
-                new MovieViewModelMapperImpl());
+        //todo здесь примерно надо создавать Presenter, передавая в него себя...
+        presenter = new MoviesPresenter();
     }
 
     @Nullable

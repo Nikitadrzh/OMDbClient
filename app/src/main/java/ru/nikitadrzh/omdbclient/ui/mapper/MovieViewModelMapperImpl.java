@@ -7,6 +7,7 @@ import ru.nikitadrzh.domain.model.Movie;
 import ru.nikitadrzh.omdbclient.ui.model.MovieViewModel;
 
 public class MovieViewModelMapperImpl implements MovieViewModelMapper {
+
     @Override
     public List<MovieViewModel> mapMovieToViewModel(List<Movie> moviesToMap) {
         //todo пока ваще нече не меняем

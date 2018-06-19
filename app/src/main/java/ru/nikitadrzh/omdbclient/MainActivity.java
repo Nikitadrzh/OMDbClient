@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import javax.inject.Inject;
+
 import ru.nikitadrzh.omdbclient.ui.movie.content.MovieFragment;
 import ru.nikitadrzh.omdbclient.ui.movie.list.MoviesFragment;
 
@@ -15,38 +17,8 @@ import ru.nikitadrzh.omdbclient.ui.movie.list.MoviesFragment;
 //для теста сделаем активити без DI и проч.
 public class MainActivity extends AppCompatActivity {
 
-    //todo надо инжектить
-    private FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return new MoviesFragment();
-                case 1:
-                    return new MovieFragment();
-                default:
-                    return null;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 2;
-        }
-
-        @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Search";
-                case 1:
-                    return "Favourites";
-                default:
-                    return null;
-            }
-        }
-    };
+    @Inject
+    public FragmentStatePagerAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

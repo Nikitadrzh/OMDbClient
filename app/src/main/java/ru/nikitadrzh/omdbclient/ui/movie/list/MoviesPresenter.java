@@ -22,15 +22,11 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     //в RxJava2 вместо subscription - disposable
     private Disposable disposable;
 
-    //todo заинджектить, но пока что просто создать, и передать в него заглушку - репозиторий,
-    //todo который реализовавается в data(или временно в app)
+    //todo заинджектить
     private FindMoviesUseCase findMoviesUseCase;
 
     //todo заинджектить
     private MovieViewModelMapper movieViewModelMapper;
-
-    //todo заинжектить
-    private MovieRepository repository;
 
     /*
     По-сути сюда именно MainActivity приходит, но cast под MoviesContract.View, так что впринципе
@@ -39,13 +35,8 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     */
     private MoviesContract.View view;
 
-    public MoviesPresenter(MoviesContract.View view, MovieRepository repository,
-                           MovieViewModelMapper mapper) {//todo repo и mapper тут, потмоу что пока без DI
+    public MoviesPresenter(MoviesContract.View view){
         this.view = view;
-        this.repository = repository;
-        this.movieViewModelMapper = mapper;
-        findMoviesUseCase = new FindMoviesUseCase(repository);//todo зачем тут репо?
-        Log.i("TEST!", "MoviesContract.View has name: " + view.getClass().getName());
     }
 
     @Override
@@ -56,9 +47,6 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     }
 
     private void showFoundMovies(List<MovieViewModel> foundMovies) {
-        //todo хотя бы до сюда должно все проходить после создания маппера, если не проходит, значит
-        //todo все таки надо repoImpl передавать а не repo, а также при создании mappera тоже надо
-        //todo передавать конкретный экземпляр, а мы какбы передаем интерфейс
         view.showMovies(foundMovies);
     }
 }
