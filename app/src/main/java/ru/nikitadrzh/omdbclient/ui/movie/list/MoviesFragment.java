@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import ru.nikitadrzh.data.movie.MovieRepositoryImpl;
 import ru.nikitadrzh.omdbclient.R;
 import ru.nikitadrzh.omdbclient.ui.mapper.MovieViewModelMapperImpl;
@@ -20,7 +22,7 @@ import ru.nikitadrzh.omdbclient.ui.model.MovieViewModel;
 
 public class MoviesFragment extends Fragment implements MoviesContract.View {
 
-    //todo надо инжектить
+    //todo надо ли инжектить? или просто из компонента берем да и все?
     private MoviesPresenter presenter;
 
     //todo все что связано с findView, как с ним быть с точки зрения DI???
@@ -32,8 +34,8 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         super.onCreate(savedInstanceState);
 
         //todo в конструкторе презентера столько всего просто, потому что пока без DI
-        //todo здесь примерно надо создавать Presenter, передавая в него себя...
-        presenter = new MoviesPresenter();
+        //todo здесь примерно надо создавать Presenter, через компонент передавая в него себя...
+        //todo Получаем presenter из ком
     }
 
     @Nullable
