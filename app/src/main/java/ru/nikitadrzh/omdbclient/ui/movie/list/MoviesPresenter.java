@@ -24,10 +24,10 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     private Disposable disposable;
 
     @Inject
-    private FindMoviesUseCase findMoviesUseCase;
+    public FindMoviesUseCase findMoviesUseCase;
 
-    //todo заинджектить
-    private MovieViewModelMapper movieViewModelMapper;
+    @Inject
+    public MovieViewModelMapper movieViewModelMapper;
 
     /*
     По-сути сюда именно Fragment приходит, но cast под MoviesContract.View, так что впринципе

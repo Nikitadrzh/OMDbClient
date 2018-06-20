@@ -10,9 +10,9 @@ import android.os.Bundle;
 
 import javax.inject.Inject;
 
-import ru.nikitadrzh.omdbclient.ui.movie.content.MovieFragment;
-import ru.nikitadrzh.omdbclient.ui.movie.list.MoviesFragment;
-
+import ru.nikitadrzh.omdbclient.ui.dagger.ActivityComponent;
+import ru.nikitadrzh.omdbclient.ui.dagger.DaggerActivityComponent;
+import ru.nikitadrzh.omdbclient.ui.dagger.module.PagerAdapterModule;
 
 //для теста сделаем активити без DI и проч.
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_omdb);
+
+        ActivityComponent component = DaggerActivityComponent.builder()
+                .pagerAdapterModule(new PagerAdapterModule(this))
+                .build();
+
+        component.injectTo(this);
 
         //todo findview нельзя объявлять в полях...почему? и как быть с DI?
         ViewPager pager = findViewById(R.id.view_pager);

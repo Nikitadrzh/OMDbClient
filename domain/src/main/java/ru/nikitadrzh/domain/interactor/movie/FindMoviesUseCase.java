@@ -11,7 +11,6 @@ import ru.nikitadrzh.domain.repository.MovieRepository;
 public class FindMoviesUseCase implements SingleUseCaseWithParameter<String, List<Movie>> {
     private final MovieRepository movieRepository;
 
-    //Интерфейс MovieRepository реализовывается во внешнем слое - модуле data
     public FindMoviesUseCase(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }

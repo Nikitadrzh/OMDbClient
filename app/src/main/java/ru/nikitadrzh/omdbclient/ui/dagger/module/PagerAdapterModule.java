@@ -12,7 +12,7 @@ import ru.nikitadrzh.omdbclient.MainActivity;
 import ru.nikitadrzh.omdbclient.ui.movie.content.MovieFragment;
 import ru.nikitadrzh.omdbclient.ui.movie.list.MoviesFragment;
 
-@Module
+@Module(includes = MoviesFragmentModule.class)
 public class PagerAdapterModule {
 
     private MainActivity activity;
@@ -22,13 +22,13 @@ public class PagerAdapterModule {
     }
 
     @Provides
-    public FragmentStatePagerAdapter getAdapter() {
+    public FragmentStatePagerAdapter getAdapter(MoviesFragment moviesFragment) {
         return new FragmentStatePagerAdapter(activity.getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return new MoviesFragment();
+                        return moviesFragment;
                     case 1:
                         return new MovieFragment();
                     default:
