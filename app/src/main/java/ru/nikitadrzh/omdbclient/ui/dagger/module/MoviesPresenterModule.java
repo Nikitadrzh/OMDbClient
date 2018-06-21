@@ -15,7 +15,9 @@ public class MoviesPresenterModule {
     }
 
     @Provides
-    public MoviesPresenter getMoviesPresenter(MoviesFragment fragment) {
-        return new MoviesPresenter(fragment);
+    public MoviesPresenter getMoviesPresenter() {
+        MoviesPresenter presenter = new MoviesPresenter(fragment);
+        MoviesFragment.fragmentComponent.injectTo(presenter);
+        return presenter;
     }
 }

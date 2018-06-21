@@ -15,16 +15,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import dagger.android.DaggerFragment;
-import ru.nikitadrzh.data.movie.MovieRepositoryImpl;
+import ru.nikitadrzh.omdbclient.MainActivity;
 import ru.nikitadrzh.omdbclient.R;
+import ru.nikitadrzh.omdbclient.ui.dagger.ActivityComponent;
 import ru.nikitadrzh.omdbclient.ui.dagger.DaggerFragmentComponent;
 import ru.nikitadrzh.omdbclient.ui.dagger.FragmentComponent;
 import ru.nikitadrzh.omdbclient.ui.dagger.module.FindMoviesUseCaseModule;
 import ru.nikitadrzh.omdbclient.ui.dagger.module.MovieViewModelMapperModule;
 import ru.nikitadrzh.omdbclient.ui.dagger.module.MoviesFragmentModule;
 import ru.nikitadrzh.omdbclient.ui.dagger.module.MoviesPresenterModule;
-import ru.nikitadrzh.omdbclient.ui.mapper.MovieViewModelMapperImpl;
 import ru.nikitadrzh.omdbclient.ui.model.MovieViewModel;
 
 public class MoviesFragment extends Fragment implements MoviesContract.View {
@@ -36,15 +35,15 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     private TextInputEditText inputEditText;
     private Button foundButton;
 
+    public static FragmentComponent fragmentComponent;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FragmentComponent fragmentComponent = DaggerFragmentComponent.builder()
-                .findMoviesUseCaseModule(new FindMoviesUseCaseModule())
-                .moviesFragmentModule(new MoviesFragmentModule())
+        fragmentComponent = DaggerFragmentComponent.builder()
                 .moviesPresenterModule(new MoviesPresenterModule(this))
-                .movieViewModelMapperModule(new MovieViewModelMapperModule())
+                .activityComponent(MainActivity.component)
                 .build();
 
         fragmentComponent.injectTo(this);

@@ -7,9 +7,13 @@ import ru.nikitadrzh.omdbclient.ui.dagger.module.MovieViewModelMapperModule;
 import ru.nikitadrzh.omdbclient.ui.dagger.module.MoviesFragmentModule;
 import ru.nikitadrzh.omdbclient.ui.dagger.module.MoviesPresenterModule;
 import ru.nikitadrzh.omdbclient.ui.dagger.module.PagerAdapterModule;
+import ru.nikitadrzh.omdbclient.ui.movie.list.MoviesFragment;
 import ru.nikitadrzh.omdbclient.ui.movie.list.MoviesPresenter;
 
 @Component(modules = {PagerAdapterModule.class, MoviesFragmentModule.class})
 public interface ActivityComponent {
+
+    MoviesFragment getMoviesFragment();
+
     void injectTo(MainActivity activity);
 }
