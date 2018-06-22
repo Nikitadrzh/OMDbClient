@@ -3,6 +3,7 @@ package ru.nikitadrzh.omdbclient.ui.movie.list;
 
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -41,7 +42,7 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     }
 
     @Override
-    public void findMovies(String movieTitle) {
+    public void findMovies(String movieTitle) throws IOException {
         disposable = findMoviesUseCase.execute(movieTitle)
                 .map(movieViewModelMapper::mapMovieToViewModel)//конвертируем во вьюмодель
                 .subscribe(this::showFoundMovies, Throwable::printStackTrace);

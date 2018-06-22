@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -57,7 +58,13 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         inputEditText = view.findViewById(R.id.input_edit_text);
         foundButton = view.findViewById(R.id.found_button);
-        foundButton.setOnClickListener(v -> showFoundMovies(inputEditText.getText().toString()));
+        foundButton.setOnClickListener(v -> {
+            try {
+                showFoundMovies(inputEditText.getText().toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         return view;
     }
 
@@ -68,7 +75,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     }
 
     //это внутренний  метод, вызываемый из самого фрагмента
-    private void showFoundMovies(String request) {
+    private void showFoundMovies(String request) throws IOException {
         presenter.findMovies(request);
     }
 }

@@ -1,5 +1,6 @@
 package ru.nikitadrzh.domain.interactor.movie;
 
+import java.io.IOException;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -16,7 +17,7 @@ public class FindMoviesUseCase implements SingleUseCaseWithParameter<String, Lis
     }
 
     @Override
-    public Single<List<Movie>> execute(String movieTitle) {
+    public Single<List<Movie>> execute(String movieTitle) throws IOException {
         return movieRepository.findMovies(movieTitle);
     }
 }

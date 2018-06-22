@@ -1,5 +1,6 @@
 package ru.nikitadrzh.omdbclient.ui.movie.list;
 
+import java.io.IOException;
 import java.util.List;
 
 import ru.nikitadrzh.omdbclient.ui.model.MovieViewModel;
@@ -26,6 +27,6 @@ public interface MoviesContract {
     interface Presenter {
 
         //метод поиска фильмов по названию
-        void findMovies(String movieTitle);
+        void findMovies(String movieTitle) throws IOException;
     }
 }
