@@ -3,6 +3,7 @@ package ru.nikitadrzh.omdbclient.ui.dagger.module;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.nikitadrzh.data.movie.service.MoviesService;
 import ru.nikitadrzh.data.movie.service.MoviesServiceConverter;
@@ -20,6 +21,7 @@ public class ServiceModule {
         return new Retrofit.Builder()
                 .baseUrl("http://www.omdbapi.com/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 

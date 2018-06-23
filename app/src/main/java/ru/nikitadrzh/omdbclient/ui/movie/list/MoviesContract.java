@@ -20,6 +20,7 @@ public interface MoviesContract {
 
         //todo методу нужен аргуемент, но пока типа нет такого
         void showMovies(List<MovieViewModel> moviesToShow);
+        void showError(Throwable error);
     }
 
     //todo тут опущено наследование от ScopedPresenter (пока)

@@ -8,8 +8,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import ru.nikitadrzh.domain.interactor.movie.FindMoviesUseCase;
 import ru.nikitadrzh.domain.repository.MovieRepository;
 import ru.nikitadrzh.omdbclient.ui.mapper.MovieViewModelMapper;
@@ -37,18 +39,25 @@ public class MoviesPresenter implements MoviesContract.Presenter {
     */
     private MoviesContract.View view;
 
-    public MoviesPresenter(MoviesContract.View view){
+    public MoviesPresenter(MoviesContract.View view) {
         this.view = view;
     }
 
     @Override
     public void findMovies(String movieTitle) throws IOException {
         disposable = findMoviesUseCase.execute(movieTitle)
+                .subscribeOn(Schedulers.io())
                 .map(movieViewModelMapper::mapMovieToViewModel)//конвертируем во вьюмодель
-                .subscribe(this::showFoundMovies, Throwable::printStackTrace);
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::showFoundMovies, this::showError);
+        Log.e("T", "d");
     }
 
-    private void showFoundMovies(List<MovieViewModel> foundMovies) {
+    public void showFoundMovies(List<MovieViewModel> foundMovies) {
         view.showMovies(foundMovies);
+    }
+
+    public void showError(Throwable error) {
+        view.showError(error);
     }
 }

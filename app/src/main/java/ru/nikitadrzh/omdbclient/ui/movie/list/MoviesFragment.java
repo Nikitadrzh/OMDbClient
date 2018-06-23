@@ -71,7 +71,12 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     @Override
     public void showMovies(List<MovieViewModel> moviesToShow) {
         //todo и здесь уже идет отображение в recyclerView
-        Toast.makeText(getActivity(), moviesToShow.get(0).toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), moviesToShow.get(0).toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showError(Throwable error) {
+        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
     }
 
     //это внутренний  метод, вызываемый из самого фрагмента
